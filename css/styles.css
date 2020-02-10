@@ -43,10 +43,11 @@ aside {
 main {
   width: 80%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.items-wrapper {
+.items-wrapper--table {
   flex-basis: 30%;
   border: 1px solid grey;
   text-align: center;
@@ -62,10 +63,38 @@ main {
 
 .item__calories {
   float: left;
+  margin-left: 10px;
 }
 
 .item__price {
   float: right;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+.items-wrapper--list {
+  width: 100%;
+  border: 1px solid grey;
+}
+
+.items-wrapper--list .item {
+  display: flex;
+  align-items: center;
+}
+
+.items-wrapper--list .item__price {
+  float: none;
+  margin: 0;
+}
+
+.items-wrapper--list .item__name {
+  min-width: 300px;
+}
+
+.items-wrapper--list .item__logo {
+  height: 50px;
+  margin-right: 30px;
 }
 
 li a {

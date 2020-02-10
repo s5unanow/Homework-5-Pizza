@@ -1,17 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-<div class="page-wrapper">
-  <div class="page-wrapper__inner container">
-    <header>
+const headerContent = `<header>
       <div class="header__logo-box">
         <img src="resources/img/logo.png" alt="LOGO">
       </div>
@@ -34,9 +21,11 @@
           </ul>
         </div>
       </div>
-    </header>
-    
-    <aside>
+    </header>`;
+
+const asideFilterListContent = ``;
+
+const asideFilterTableContent = `    <aside>
       <div class="aside-container">
         <div class="filter">
           <div class="filter__section filter__ingredients">
@@ -61,52 +50,9 @@
           </div>
         </div>
       </div>
-    </aside>
-    
-    <main>
-      <div class="items-wrapper--list">
-        <div class="item">
-          <img class="item__logo" src="resources/img/logo.png" alt="pizza IMG">
-          <div class="item__name">Прошурро</div>
-          <div class="item__price">458 ₴</div>
-        </div>
-      </div>
-      <div class="items-wrapper--list">
-        <div class="item">
-          <img class="item__logo" src="resources/img/logo.png" alt="pizza IMG">
-          <div class="item__name">Прошурро</div>
-          <div class="item__price">458 ₴</div>
-        </div>
-      </div>
-      <div class="items-wrapper--table">
-        <div class="item">
-          <img class="item__image" src="resources/img/pizza-img.jpg" alt="pizza IMG">
-          <p class="item__name">Прошурро</p>
-          <p class="item__ingredients">Тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
-          <p class="item__calories">445 калорий</p>
-          <p class="item__price">458 ₴</p>
-        </div>
-      </div>
-      <div class="items-wrapper--table">
-        <div class="item">
-          <img class="item__image" src="resources/img/pizza-img.jpg" alt="pizza IMG">
-          <p class="item__name">Прошурро</p>
-          <p class="item__ingredients">Тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
-          <p class="item__calories">445 калорий</p>
-          <p class="item__price">458 ₴</p>
-        </div>
-      </div>
-      <div class="items-wrapper--table">
-        <div class="item">
-          <img class="item__image" src="resources/img/pizza-img.jpg" alt="pizza IMG">
-          <p class="item__name">Прошурро</p>
-          <p class="item__ingredients">Тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
-          <p class="item__calories">445 калорий</p>
-          <p class="item__price">458 ₴</p>
-        </div>
-      </div>
-    </main>
-    <footer>
+    </aside>`;
+
+const footerContent = `    <footer>
       <div class="footer__inner">
         <div class="footer__phone footer__row">8 800 555 35 35</div>
         <div class="footer__callback footer__row">Callback</div>
@@ -126,17 +72,10 @@
           </ul>
         </div>
       </div>
-    </footer>
-  </div>
+    </footer>`;
 
-  <div class="layout-menu">
+const layoutMenuContent = `  <div class="layout-menu">
     <p class="layout-menu--offer">Привет! Как ты хочешь нас видеть 🍕?</p>
     <div class="layout-menu__option">Табличкой</div>
     <div class="layout-menu__option">Списком</div>
-  </div>
-</div>
-<script src="js/content.js" defer></script>
-<script src="js/page-components.js" defer></script>
-<script src="js/site-builder.js" defer></script>
-</body>
-</html>
+  </div>`;
