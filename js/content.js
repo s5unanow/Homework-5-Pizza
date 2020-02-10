@@ -1,3 +1,16 @@
+const initialState = `
+    <div class="page-wrapper">
+      <div class="page-wrapper__inner container">
+        <div class="layout-menu__container">
+          <div class="layout-menu">
+            <h1 class="layout-menu--offer">Привет! Как ты хочешь нас видеть 🍕?</h1>
+            <div class="layout-menu__option layout-menu__option-table">Табличкой</div>
+            <div class="layout-menu__option layout-menu__option-list">Списком</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
 const headerContent = `<header>
       <div class="header__logo-box">
         <img src="resources/img/logo.png" alt="LOGO">
@@ -73,9 +86,3 @@ const footerContent = `    <footer>
         </div>
       </div>
     </footer>`;
-
-const layoutMenuContent = `  <div class="layout-menu">
-    <p class="layout-menu--offer">Привет! Как ты хочешь нас видеть 🍕?</p>
-    <div class="layout-menu__option">Табличкой</div>
-    <div class="layout-menu__option">Списком</div>
-  </div>`;

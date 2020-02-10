@@ -12,7 +12,7 @@ class PageComponent {
   }
 }
 
-class AsideFilter extends PageComponent {
+class AsideMenu extends PageComponent {
   constructor(name, content, parent) {
     super(name, content, parent);
     this.hasLayoutStyle = true;
@@ -49,7 +49,7 @@ class Main extends PageComponent {
     }
     this.viewedItems = items;
   }
-  sortBy(parameter) {
+  sortBy(sorter) {
     this.viewedItems = this.items.sort((item1, item2) => item1[parameter] - item2[parameter])
   }
   setTableStyle() {

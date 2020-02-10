@@ -34,6 +34,18 @@ aside {
   margin-top: 3px;
 }
 
+.remove-filters {
+  margin-top: 20px;
+  padding-left: 15px;
+  font-size: 1.2rem;
+  color: brown;
+  cursor: pointer;
+}
+
+.remove-filters:hover {
+  text-decoration: underline;
+}
+
 .clearfix::after {
   content: "";
   display: table;
@@ -59,6 +71,10 @@ main {
 
 .item__name {
   font-size: 1.7rem;
+}
+
+.item__ingredients:first-letter {
+  text-transform: uppercase;
 }
 
 .item__calories {
@@ -126,4 +142,38 @@ ul {
 .footer__callback {
   text-transform: uppercase;
   font-size: 1.2rem;
+}
+
+.layout-menu__container {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background: white;
+}
+
+.layout-menu {
+  padding: 10%;
+}
+
+.layout-menu h1 {
+  font-size: 3rem;
+}
+
+.layout-menu__option {
+  display: inline-block;
+  width: 250px;
+  font-size: 2rem;
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: all .4s;
+}
+
+.layout-menu__option:hover {
+  transform: translateY(-10px);
+  box-shadow: 3px 3px 5px 6px #ccc;
 }
