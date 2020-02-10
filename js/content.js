@@ -36,7 +36,13 @@ const headerContent = `<header>
       </div>
     </header>`;
 
-const asideFilterListContent = ``;
+const asideFilterListContent = `
+<select name="sorter" id="sorter">
+  <option value="name_asc">Название: А -> Я</option>
+  <option value="name_desc">Название: Я -> А</option>
+  <option value="price_asc">Цена: убывание </option>
+  <option value="price_desc">Цена: возрастание </option>
+</select>`;
 
 const asideFilterTableContent = `    <aside>
       <div class="aside-container">
@@ -45,6 +51,7 @@ const asideFilterTableContent = `    <aside>
             <p class="filter__calories--describe">Ингредиенты:</p>
             <ul>
               <li><label><input type="checkbox" name="ingredients" id="fish">Рыба</label></li>
+              <li><label><input type="checkbox" name="ingredients" id="mushrooms">Грибы</label></li>
               <li><label><input type="checkbox" name="ingredients" id="tomatoes">Помидоры</label></li>
               <li><label><input type="checkbox" name="ingredients" id="asparagus">Спаржа</label></li>
               <li><label><input type="checkbox" name="ingredients" id="mozzarella">Моцарелла</label></li>
@@ -56,11 +63,12 @@ const asideFilterTableContent = `    <aside>
           <div class="filter__section filter__calories">
             <p class="filter__calories--describe">Калорий на 100гр:</p>
             <ul>
-              <li><label><input type="checkbox" name="calories" id="calorie50"><50</label></li>
-              <li><label><input type="checkbox" name="calories" id="calories50_100">50-100</label></li>
-              <li><label><input type="checkbox" name="calories" id="calories100"><100</label></li>
+              <li><label><input type="checkbox" name="calories" id="calorie50"><500</label></li>
+              <li><label><input type="checkbox" name="calories" id="calories50_100">500-1000</label></li>
+              <li><label><input type="checkbox" name="calories" id="calories100"><1000</label></li>
             </ul>
           </div>
+          <div class="remove-filters">Сбросить всё</div>
         </div>
       </div>
     </aside>`;

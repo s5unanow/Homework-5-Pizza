@@ -60,12 +60,13 @@ main {
 }
 
 .items-wrapper--table {
-  flex-basis: 30%;
+  flex-basis: 33%;
   border: 1px solid grey;
   text-align: center;
 }
 
 .item__image {
+  margin-top: 10px;
   width: 180px;
 }
 
@@ -95,6 +96,7 @@ main {
 }
 
 .items-wrapper--list .item {
+  margin: 5px;
   display: flex;
   align-items: center;
 }

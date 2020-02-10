@@ -19,8 +19,9 @@ class Utils {
 }
 
 class SiteBuilder {
-  constructor(siteComponents) {
+  constructor(siteComponents, parent) {
     this.components = siteComponents.getComponents();
+    this.parent = parent;
   }
   static initialize() {
     let body = Utils.getBody();
@@ -30,23 +31,21 @@ class SiteBuilder {
 
   }
   buildTableStyle() {
-    this.clearBody();
-    console.log(this.components);
+    this.clearParent();
     this.components.forEach(component => {
       if (component.hasLayoutStyle) component.setTableStyle().build();
       else component.build();
     });
   }
   buildListStyle() {
-    this.clearBody();
+    this.clearParent();
     this.components.forEach(component => {
       if (component.hasLayoutStyle) component.setListStyle().build();
       else component.build();
     });
   }
-  clearBody() {
-    let body = Utils.getBody();
-    body.innerHTML = `
+  clearParent() {
+    this.parent.innerHTML = `
     <div class="page-wrapper">
       <div class="page-wrapper__inner container">
       </div>
@@ -91,7 +90,6 @@ class Controller {
     for (let state in SITE_VIEW_STYLE) {
       this.viewStyle[SITE_VIEW_STYLE[state]] = false;
     }
-    console.log(this.viewStyle);
   }
   initializeView(style) {
     if (Object.values(SITE_VIEW_STYLE).includes(style)) {
@@ -125,34 +123,7 @@ class Controller {
   }
 }
 
-class Item {
-  constructor(name, price, ingredients) {
-    this.name = name;
-    this.price = price;
-    this.ingredients = ingredients;
-  }
-  ingredientsList() {
-    return this.ingredients.reduce((list, ingredient) => {
-      return list + " " + ingredient;
-    }, "");
-  }
-}
 
-class Pizza extends Item {
-  constructor(name, price, ingredients) {
-    super(name, price, ingredients);
 
-  }
-}
 
-class Ingredient {
-  constructor(name, calories, price) {
-    this.name = name;
-    this.calories = calories;
-    this.price = price;
-  }
-  calcPrice(portions) {
-    return this.price * portions
-  }
-}
 
