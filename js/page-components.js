@@ -10,6 +10,9 @@ class PageComponent {
     this.element.innerHTML = this.content;
     this.parent.appendChild(this.element);
   }
+  update() {
+    this.element.innerHTML = this.content;
+  }
 }
 
 class AsideMenu extends PageComponent {
@@ -38,9 +41,6 @@ class Main extends PageComponent {
   build() {
     this.element.innerHTML = this.content;
     this.parent.appendChild(this.element);
-  }
-  update() {
-    this.element.innerHTML = this.content;
   }
   filterBy(filter) {
     let items = [...this.items];

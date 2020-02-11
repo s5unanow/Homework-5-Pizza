@@ -11,7 +11,7 @@ const initialState = `
       </div>
     </div>`;
 
-const headerContent = `<header>
+const headerContent = `    <header>
       <div class="header__logo-box">
         <img src="resources/img/logo.png" alt="LOGO">
       </div>
@@ -33,6 +33,10 @@ const headerContent = `<header>
             <li>Меню отшельника</li>
           </ul>
         </div>
+      </div>
+      <div class="switch-view">
+        <img id="switch-view__list" src="resources/img/switch--list.png" alt="Switch to list view">
+        <img id="switch-view__table" src="resources/img/switch--table.png" alt="Switch to table view">
       </div>
     </header>`;
 

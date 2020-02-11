@@ -3,6 +3,10 @@
   max-width: 1024px;
 }
 
+header {
+  position: relative;
+}
+
 .header__logo-box {
   width: 200px;
   text-align: left;
@@ -17,6 +21,17 @@
 .header__offers{
   margin-top: 30px;
   font-size: 1.5rem;
+}
+
+.switch-view {
+  position: absolute;
+  top: 80px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.switch-view--inactive {
+  opacity: 30%;
 }
 
 .social li,

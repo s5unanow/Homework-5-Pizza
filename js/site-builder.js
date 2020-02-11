@@ -45,6 +45,16 @@ class SiteBuilder {
       </div>
     </div>`;
   }
+  updateTableStyle() {
+    this.components.forEach(component => {
+      if (component.hasLayoutStyle) component.setTableStyle().update();
+    });
+  }
+  updateListStyle() {
+    this.components.forEach(component => {
+      if (component.hasLayoutStyle) component.setListStyle().update();
+    });
+  }
   filterAndUpdateMain(filter) {
     this.main.filterBy(filter).update();
   }
@@ -87,6 +97,16 @@ class Filter {
   }
 }
 
+class SwitchViewer {
+  constructor(switchViewElement) {
+    this.switchViewElement = switchViewElement;
+    this.initialize();
+  }
+  initialize() {
+    this.switchViewElement.addEventListener("click")
+  }
+}
+
 class Controller {
   constructor(siteBuilder) {
     this.viewStyle = {};
@@ -104,6 +124,20 @@ class Controller {
       this.setViewStyle(style);
     }
     this.buildView();
+    let switchViewer = document.querySelector(".switch-view");
+    switchViewer.addEventListener("click", () => this.toggleView());
+  }
+  toggleView() {
+    if (this.viewStyle[SITE_VIEW_STYLE.TABLE]) {
+      this.setViewStyle(SITE_VIEW_STYLE.LIST);
+      this.siteBuilder.updateListStyle();
+      return
+    }
+    if (this.viewStyle[SITE_VIEW_STYLE.LIST]) {
+      this.setViewStyle(SITE_VIEW_STYLE.TABLE);
+      this.siteBuilder.updateTableStyle();
+      return
+    }
   }
   setViewStyle(newStyle) {
     if (newStyle) {
@@ -144,18 +178,6 @@ class Controller {
   }
   shouldReactToSortEvent(event) {
     return Object.values(SORT_VIEW_TYPES).includes(event.target.value)
-  }
-  updateView() {
-
-  }
-  changeViewStyle() {
-
-  }
-  updateFilteredView(event) {
-
-  }
-  updateSortedView(event) {
-
   }
 }
 
