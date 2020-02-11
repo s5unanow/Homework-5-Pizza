@@ -12,7 +12,7 @@ const controller = new Controller(siteBuilder);
 
 const layoutMenuTable = document.querySelector(".layout-menu__option-table");
 const layoutMenuList = document.querySelector(".layout-menu__option-list");
-const asideMenu = DOMAsideMenu.element;
+let filterMenu = DOMAsideMenu.element;
 
 layoutMenuTable.addEventListener("click", event => {
   controller.initializeView(SITE_VIEW_STYLE.TABLE);
@@ -22,6 +22,10 @@ layoutMenuList.addEventListener("click", event => {
   controller.initializeView(SITE_VIEW_STYLE.LIST);
 });
 
-asideMenu.addEventListener("click", event => {
-  console.log(event);
+filterMenu.addEventListener("click", event => {
+  controller.reactToFilter(event);
+});
+
+filterMenu.addEventListener("change", event => {
+  controller.reactToSorter(event);
 });

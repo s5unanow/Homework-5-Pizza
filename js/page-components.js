@@ -33,24 +33,49 @@ class Main extends PageComponent {
     this.items = items;
     this.viewedItems = items;
     this.hasLayoutStyle = true;
+    this.sortBy(SORT_VIEW_TYPES.NAME_ASC);
   }
   build() {
     this.element.innerHTML = this.content;
     this.parent.appendChild(this.element);
   }
+  update() {
+    this.element.innerHTML = this.content;
+  }
   filterBy(filter) {
     let items = [...this.items];
-    for (let filterType of filter) {
-      if (filter[filterType].length > 0) {
-        filterType.forEach(type => {
-          items = items.filter(item => item[filterType].includes(type));
-        })
+    if (!filter.active) {
+      this.viewedItems = this.items;
+    } else {
+      for (let ingredient of filter.ingredients) {
+        items = items.filter(item => item.ingredientsIDArray().includes(ingredient));
       }
     }
     this.viewedItems = items;
+    this.setTableStyle();
+    if (items.length === 0) {
+      this.content = `
+      <div class="items__no--items">
+        <h2>Ничего не найдено по запросу!</h2>
+      </div>`
+    }
+    return this
   }
   sortBy(sorter) {
-    this.viewedItems = this.items.sort((item1, item2) => item1[parameter] - item2[parameter])
+    if (sorter === SORT_VIEW_TYPES.NAME_ASC) {
+      this.viewedItems = this.items.sort((item1, item2) => Utils.sorter(item1.name, item2.name));
+    }
+    if (sorter === SORT_VIEW_TYPES.NAME_DESC) {
+      this.viewedItems = this.items.sort((item1, item2) => Utils.sorterReverse(item1.name, item2.name));
+    }
+    if (sorter === SORT_VIEW_TYPES.PRICE_ASC) {
+      this.viewedItems = this.items.sort((item1, item2) => Utils.sorterReverse(item1.price, item2.price));
+    }
+    if (sorter === SORT_VIEW_TYPES.PRICE_DESC) {
+      this.viewedItems = this.items.sort((item1, item2) => Utils.sorter(item1.price, item2.price));
+    }
+    this.setListStyle();
+    return this
   }
   setTableStyle() {
     let content = ``;
@@ -81,7 +106,6 @@ class Main extends PageComponent {
         </div>
       </div>`
     });
-    console.log("build list");
     this.content = content;
     return this
   }
@@ -98,5 +122,8 @@ class PageComponents {
   }
   getComponents() {
     return this.components;
+  }
+  getComponent(name) {
+    return this.components.find(component => component.name === name);
   }
 }

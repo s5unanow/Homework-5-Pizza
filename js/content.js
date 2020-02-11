@@ -63,12 +63,12 @@ const asideFilterTableContent = `    <aside>
           <div class="filter__section filter__calories">
             <p class="filter__calories--describe">Калорий на 100гр:</p>
             <ul>
-              <li><label><input type="checkbox" name="calories" id="calorie50"><500</label></li>
-              <li><label><input type="checkbox" name="calories" id="calories50_100">500-1000</label></li>
-              <li><label><input type="checkbox" name="calories" id="calories100"><1000</label></li>
+              <li><label><input type="checkbox" name="calories" id="less500"><500</label></li>
+              <li><label><input type="checkbox" name="calories" id="between500_1000">500-1000</label></li>
+              <li><label><input type="checkbox" name="calories" id="more1000"><1000</label></li>
             </ul>
           </div>
-          <div class="remove-filters">Сбросить всё</div>
+          <div id="remove-filters" class="remove-filters">Сбросить всё</div>
         </div>
       </div>
     </aside>`;
@@ -94,3 +94,9 @@ const footerContent = `    <footer>
         </div>
       </div>
     </footer>`;
+
+const zeroResult = `
+      <div class="items__no--items">
+        <h2>Ничего не найдено по запросу!</h2>
+      </div>
+`;

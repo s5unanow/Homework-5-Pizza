@@ -1,34 +1,28 @@
-const SITE_VIEW_STYLE = {
-  TABLE: "table",
-  LIST: "list"
-};
-const FILTER_VIEW_TYPES = {
-  INGREDIENTS: "ingredients",
-  CALORIES: "calories"
-};
-const SORT_VIEW_TYPES = {
-  ASC: "ascending",
-  DESC: "descending",
-  NONE: "none"
-};
-
 class Utils {
   static getBody () {
     return document.querySelector("body");
   }
+  static sorter(item1, item2) {
+    if (item1 > item2) return 1;
+    if (item1 < item2) return -1;
+    return 0
+  }
+  static sorterReverse(item1, item2) {
+    if (item1 > item2) return -1;
+    if (item1 < item2) return 1;
+    return 0
+  }
 }
 
 class SiteBuilder {
-  constructor(siteComponents, parent) {
-    this.components = siteComponents.getComponents();
+  constructor(pageComponents, parent) {
     this.parent = parent;
+    this.components = pageComponents.getComponents();
+    this.main = pageComponents.getComponent("main");
   }
   static initialize() {
     let body = Utils.getBody();
     body.innerHTML = initialState;
-  }
-  buildDefaultLayout() {
-
   }
   buildTableStyle() {
     this.clearParent();
@@ -51,40 +45,54 @@ class SiteBuilder {
       </div>
     </div>`;
   }
+  filterAndUpdateMain(filter) {
+    this.main.filterBy(filter).update();
+  }
+  sortAndUpdateMain(sorter) {
+    this.main.sortBy(sorter).update();
+  }
 }
 
 class Filter {
   constructor() {
-    this.filtered = false;
+    this.active = false;
     this.ingredients = [];
     this.calories = [];
   }
-}
-
-class Sorter{
-  constructor() {
-    this.byName = SORT_VIEW_TYPES.ASC;
-    this.byPrice = SORT_VIEW_TYPES.NONE;
-  }
-  setSortByName(type) {
-    if (Object.values(SORT_VIEW_TYPES).includes(type)) {
-      this.byName = type;
+  updateIngredientsState(type, state) {
+    if (!state) {
+      this.ingredients = this.ingredients.filter(ingredient => ingredient !== type); //remove ingredient from filter
+    } else {
+      this.ingredients.push(type);
     }
+    this.isFiltered();
   }
-  setSortByPrice(type) {
-    if (Object.values(SORT_VIEW_TYPES).includes(type)) {
-      this.byPrice = type;
+  updateCaloriesState(type, state) {
+    if (!state) {
+      this.ingredients = this.ingredients.filter(ingredient => ingredient !== type); //remove ingredient from filter
+    } else {
+      this.ingredients.push(type);
     }
+    this.isFiltered();
+  }
+  isFiltered() {
+    this.active = this.ingredients.length > 0 || this.calories.length > 0;
+  }
+  clearFilter() {
+    this.active = false;
+    this.ingredients = [];
+    this.calories = [];
+    let checkboxes = Array.from(document.querySelectorAll(`input[type="checkbox"]`)); //revisit and rearrange connections
+    checkboxes.forEach(checkbox => checkbox.checked = false);
   }
 }
 
 class Controller {
-  constructor(siteBuilder, filter, sorter) {
+  constructor(siteBuilder) {
     this.viewStyle = {};
     this.initialiseViewStyle();
     this.siteBuilder = siteBuilder;
-    this.filter = filter;
-    this.sorter = sorter;
+    this.filter = new Filter();
   }
   initialiseViewStyle() {
     for (let state in SITE_VIEW_STYLE) {
@@ -111,6 +119,34 @@ class Controller {
     if (this.viewStyle.list) {
       this.siteBuilder.buildListStyle();
     }
+  }
+  reactToFilter(event) {
+    if (this.shouldReactToFilterEvent(event)) {
+      if (event.target.name === FILTER_VIEW_TYPES.INGREDIENTS) {
+        this.filter.updateIngredientsState(event.target.id, event.target.checked);
+      }
+      if (event.target.name === FILTER_VIEW_TYPES.CALORIES) {
+        this.filter.updateCaloriesState(event.target.id, event.target.checked);
+      }
+      if (event.target.id === "remove-filters") {
+        this.filter.clearFilter();
+      }
+    this.siteBuilder.filterAndUpdateMain(this.filter);
+    }
+  }
+  shouldReactToFilterEvent(event) {
+    return Object.values(FILTER_VIEW_TYPES).includes(event.target.name) || event.target.id === "remove-filters"
+  }
+  reactToSorter(event) {
+    if (this.shouldReactToSortEvent(event)) {
+      this.siteBuilder.sortAndUpdateMain(event.target.value);
+    }
+  }
+  shouldReactToSortEvent(event) {
+    return Object.values(SORT_VIEW_TYPES).includes(event.target.value)
+  }
+  updateView() {
+
   }
   changeViewStyle() {
 

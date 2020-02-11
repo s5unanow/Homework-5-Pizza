@@ -10,6 +10,9 @@ class Item {
   ingredientsList() {
     return this.ingredients.map(ingredient => ingredient.name).join(", ") + ".";
   }
+  ingredientsIDArray() {
+    return this.ingredients.map(ingredient => ingredient.id);
+  }
   calcPrice() {
     return this.basePrice + this.ingredients.reduce((acc, ingredient) => {
       return acc + ingredient.price;

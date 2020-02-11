@@ -34,6 +34,10 @@ aside {
   margin-top: 3px;
 }
 
+.filter__calories {
+  display: none;
+}
+
 .remove-filters {
   margin-top: 20px;
   padding-left: 15px;
@@ -56,7 +60,11 @@ main {
   width: 80%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
+}
+
+.items__no--items {
+  margin-bottom: 400px;
 }
 
 .items-wrapper--table {
@@ -72,6 +80,10 @@ main {
 
 .item__name {
   font-size: 1.7rem;
+}
+
+.item__ingredients {
+  min-height: 24px;
 }
 
 .item__ingredients:first-letter {
@@ -126,7 +138,7 @@ ul {
 }
 
 .footer__inner {
-  margin-top: 25px;
+  margin-top: 40px;
   padding: 15px 0;
   text-align: center;
   background: #ff7c7c;
