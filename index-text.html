@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <div class="page-wrapper__inner container">
+    <header>
+      <div class="header__logo-box">
+        <img src="resources/img/logo.png" alt="LOGO">
+      </div>
+      <div class="header__menu--right">
+        <div class="header__menu menu">
+          <ul>
+            <li><a href="#">Доставка и оплата</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="#">Жалобы и предложения</a></li>
+            <li><a href="#">Личный кабинет</a></li>
+          </ul>
+        </div>
+        <div class="shop-cart"></div>
+        <div class="header__offers menu">
+          <ul>
+            <li>Хиты</li>
+            <li>Новинки</li>
+            <li>Выбор чемпионов</li>
+            <li>Меню отшельника</li>
+          </ul>
+        </div>
+      </div>
+      <div class="switch-view">
+        <img id="switch-view__list" src="resources/img/switch--list.png" alt="Switch to list view">
+        <img id="switch-view__table" src="resources/img/switch--table.png" alt="Switch to table view">
+      </div>
+    </header>
+    
+    <aside>
+      <div class="aside-container">
+        <div class="filter">
+          <div class="filter__section filter__ingredients">
+            <p class="filter__calories--describe">Ингредиенты:</p>
+            <ul>
+              <li><label><input type="checkbox" name="ingredients" id="fish">Рыба</label></li>
+              <li><label><input type="checkbox" name="ingredients" id="mushrooms">Грибы</label></li>
+              <li><label><input type="checkbox" name="ingredients" id="tomatoes">Помидоры</label></li>
+              <li><label><input type="checkbox" name="ingredients" id="asparagus">Спаржа</label></li>
+              <li><label><input type="checkbox" name="ingredients" id="mozzarella">Моцарелла</label></li>
+              <li><label><input type="checkbox" name="ingredients" id="salami">Салями</label></li>
+              <li><label><input type="checkbox" name="ingredients" id="chicken">Курица</label></li>
+              <li><label><input type="checkbox" name="ingredients" id="goose">Жёпка гуся</label></li>
+            </ul>
+          </div>
+          <div class="filter__section filter__calories">
+            <p class="filter__calories--describe">Калорий на 100гр:</p>
+            <ul>
+              <li><label><input type="checkbox" name="calories" id="calorie50"><50</label></li>
+              <li><label><input type="checkbox" name="calories" id="calories50_100">50-100</label></li>
+              <li><label><input type="checkbox" name="calories" id="calories100"><100</label></li>
+            </ul>
+          </div>
+          <div class="remove-filters">Сбросить всё</div>
+        </div>
+      </div>
+    </aside>
+    
+    <main>
+<!--      <div class="items__no&#45;&#45;items">-->
+<!--        <h2>Ничего не найдено по запросу!</h2>-->
+<!--      </div>-->
+<!--      <div class="items-wrapper&#45;&#45;list">-->
+<!--        <div class="item">-->
+<!--          <img class="item__logo" src="resources/img/logo.png" alt="pizza IMG">-->
+<!--          <div class="item__name">Прошурро</div>-->
+<!--          <div class="item__price">458 ₴</div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="items-wrapper&#45;&#45;list">-->
+<!--        <div class="item">-->
+<!--          <img class="item__logo" src="resources/img/logo.png" alt="pizza IMG">-->
+<!--          <div class="item__name">Прошурро</div>-->
+<!--          <div class="item__price">458 ₴</div>-->
+<!--        </div>-->
+<!--      </div>-->
+      <div class="items-wrapper--table">
+        <div class="item">
+          <img class="item__image" src="resources/img/pizza-img.jpg" alt="pizza IMG">
+          <p class="item__name">Прошурро</p>
+          <p class="item__ingredients">Тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
+          <p class="item__calories">445 калорий</p>
+          <p class="item__price">458 ₴</p>
+        </div>
+      </div>
+      <div class="items-wrapper--table">
+        <div class="item">
+          <img class="item__image" src="resources/img/pizza-img.jpg" alt="pizza IMG">
+          <p class="item__name">Прошурро</p>
+          <p class="item__ingredients">тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
+          <p class="item__calories">445 калорий</p>
+          <p class="item__price">458 ₴</p>
+        </div>
+      </div>
+      <div class="items-wrapper--table">
+        <div class="item">
+          <img class="item__image" src="resources/img/pizza-img.jpg" alt="pizza IMG">
+          <p class="item__name">Прошурро</p>
+          <p class="item__ingredients">Тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
+          <p class="item__calories">445 калорий</p>
+          <p class="item__price">458 ₴</p>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="footer__inner">
+        <div class="footer__phone footer__row">8 800 555 35 35</div>
+        <div class="footer__callback footer__row">Callback</div>
+        <div class="footer__social social footer__row">
+          <ul>
+            <li><a href="#">FB</a></li>
+            <li><a href="#">Inst</a></li>
+            <li><a href="#">Teleg</a></li>
+          </ul>
+        </div>
+        <div class="footer__menu menu footer__row">
+          <ul>
+            <li><a href="#">Доставка и оплата</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="#">Жалобы и предложения</a></li>
+            <li><a href="#">Личный кабинет</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+<!--  <div class="layout-menu__container">-->
+<!--    <div class="layout-menu">-->
+<!--      <h1 class="layout-menu&#45;&#45;offer">Привет! Как ты хочешь нас видеть 🍕?</h1>-->
+<!--      <div class="layout-menu__option layout-menu__option-table">Табличкой</div>-->
+<!--      <div class="layout-menu__option layout-menu__option-list">Списком</div>-->
+<!--    </div>-->
+<!--  </div>-->
+</div>
+<script src="js/content.js" defer></script>
+<script src="js/page-components.js" defer></script>
+<script src="js/site-builder.js" defer></script>
+</body>
+</html>
