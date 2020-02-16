@@ -81,8 +81,8 @@ class Main extends PageComponent {
     let content = ``;
     this.viewedItems.forEach(item => {
       content = content +`
-      <div class="items-wrapper--table">
-        <div class="item">
+      <div class="item--table">
+        <div class="item-card">
           <img class="item__image" src="resources/img/${item.name}.png" alt="pizza IMG">
           <p class="item__name">${item.name}</p>
           <p class="item__ingredients">${item.ingredientsList()}</p>

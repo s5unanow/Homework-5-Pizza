@@ -1,12 +1,18 @@
 class Ingredient {
-  constructor(name, id, calories, price) {
+  constructor(name, id, calories, price, quantity = 1) {
     this.id = id;
     this.name = name;
-    this.calories = calories;
-    this.price = price;
+    this.singlePrice = price;
+    this.singleCalories = calories;
+    this.quantity = quantity;
+    this.calories;
+    this.price;
   }
-  calcPrice(portions) {
-    return this.price * portions
+  get price() {
+    return this.singlePrice * this.quantity
+  }
+  get calories() {
+    return this.singleCalories * this.quantity
   }
 }
 

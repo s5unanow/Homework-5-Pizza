@@ -6,7 +6,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles-text.css">
 </head>
 <body>
 <div class="page-wrapper">
@@ -87,17 +87,67 @@
 <!--          <div class="item__price">458 ₴</div>-->
 <!--        </div>-->
 <!--      </div>-->
-      <div class="items-wrapper--table">
-        <div class="item">
-          <img class="item__image" src="resources/img/pizza-img.jpg" alt="pizza IMG">
-          <p class="item__name">Прошурро</p>
-          <p class="item__ingredients">Тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
-          <p class="item__calories">445 калорий</p>
-          <p class="item__price">458 ₴</p>
+      <div class="item item--table">
+        <div class="card">
+          <div class="card__side card__side--front">
+            <p class="item__name">Прошурро</p>
+            <div class="item__ingredients">
+              <div class="item__ingredient">
+                <label for="proshurro">Тунец </label>
+                <input value="1" min="1" max="15" type="number" id="proshurro">
+                <span class="interactive-element">&nbsp;❌</span>
+              </div>
+              <div class="item__ingredient">
+                <label for="proshurro">Креветки </label>
+                <input value="1" min="1" max="15" type="number" id="proshurro">
+                <span class="interactive-element">&nbsp;❌</span>
+              </div>
+              <div class="item__ingredient">
+                <label for="proshurro">Осьминог </label>
+                <input value="1" min="1" max="15" type="number" id="proshurro">
+                <span class="interactive-element">&nbsp;❌</span>
+              </div>
+              <div class="item__ingredient">
+                <label for="proshurro">Кальмар </label>
+                <input value="1" min="1" max="15" type="number" id="proshurro">
+                <span class="interactive-element">&nbsp;❌</span>
+              </div>
+              <div class="item__ingredient">
+                <label for="proshurro">Мидии </label>
+                <input value="1" min="1" max="15" type="number" id="proshurro">
+                <span class="interactive-element">&nbsp;❌</span>
+              </div>
+              <div class="item__ingredient">
+                <label for="proshurro">Лимон </label>
+                <input value="1" min="1" max="15" type="number" id="proshurro">
+                <span class="interactive-element">&nbsp;❌</span>
+              </div>
+              <div class="item__ingredient">
+                <select name="add-ingredient" id="item--add">
+                  <option value="">Тунец</option>
+                  <option value="">Креветки</option>
+                  <option value="">Осьминог</option>
+                  <option value="">Кальмар</option>
+                  <option value="">Мидии</option>
+                  <option value="">Лимон</option>
+                </select> <span class="interactive-element">➕</span>
+              </div>
+              <button class="active-btn item__btn-save">Сохранить</button>
+            </div>
+            <p class="item__calories">445 ккал</p>
+            <p class="item__price">458 ₴</p>
+          </div>
+          <div class="card__side card__side--back">
+            <img class="item__image" src="resources/img/pizza-img.jpg" alt="pizza IMG">
+            <p class="item__name">Прошурро</p>
+            <p class="item__ingredients">тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
+            <p class="item__calories">445 ккал</p>
+            <p class="item__price">458 ₴</p>
+          </div>
         </div>
       </div>
-      <div class="items-wrapper--table">
-        <div class="item">
+      <div class="item--table">
+        <div class="item-card">
           <img class="item__image" src="resources/img/pizza-img.jpg" alt="pizza IMG">
           <p class="item__name">Прошурро</p>
           <p class="item__ingredients">тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
@@ -105,11 +155,43 @@
           <p class="item__price">458 ₴</p>
         </div>
       </div>
-      <div class="items-wrapper--table">
-        <div class="item">
-          <img class="item__image" src="resources/img/pizza-img.jpg" alt="pizza IMG">
+      <div class="item--table">
+        <div class="item-card">
           <p class="item__name">Прошурро</p>
-          <p class="item__ingredients">Тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
+          <div class="item__ingredients">
+            <div class="item__ingredient">
+              <label for="proshurro">Креветки</label>
+              <input disabled class="ingredient__edit--disable" value="1" min="1" max="15" type="number" id="proshurro">
+              <span class="ingredient__edit--toggle interactive-element">&nbsp;&nbsp;❌</span>
+            </div>
+            <div class="item__ingredient">
+              <label for="proshurro">Осьминог</label>
+              <input disabled class="ingredient__edit--disable" value="1" min="1" max="15" type="number" id="proshurro">
+            </div>
+            <div class="item__ingredient">
+              <label for="proshurro">Кальмар</label>
+              <input disabled class="ingredient__edit--disable" value="1" min="1" max="15" type="number" id="proshurro">
+            </div>
+            <div class="item__ingredient">
+              <label for="proshurro">Мидии</label>
+              <input disabled class="ingredient__edit--disable" value="1" min="1" max="15" type="number" id="proshurro">
+            </div>
+            <div class="item__ingredient">
+              <label for="proshurro">Лимон</label>
+              <input disabled class="ingredient__edit--disable" value="1" min="1" max="15" type="number" id="proshurro">
+            </div>
+            <div class="item__ingredient ingredient__edit--toggle">
+              <select name="add-ingredient" id="item--add">
+                <option value="">Тунец</option>
+                <option value="">Креветки</option>
+                <option value="">Осьминог</option>
+                <option value="">Кальмар</option>
+                <option value="">Мидии</option>
+                <option value="">Лимон</option>
+              </select> <span class="interactive-element">➕</span>
+            </div>
+            <button class="active-btn item__btn-edit" id="edit_ingredients">Изменить состав</button>
+          </div>
           <p class="item__calories">445 калорий</p>
           <p class="item__price">458 ₴</p>
         </div>
