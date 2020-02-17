@@ -1,0 +1,98 @@
+[
+  {
+    "id": "feliche",
+    "name": "Феличе",
+    "basePrice": 30,
+    "ingredients": ["fish", "mushrooms", "tomatoes", "olive"]
+  },
+  {
+    "id": "margarita",
+    "name": "Маргарита",
+    "basePrice": 30,
+    "ingredients": ["fish", "mushrooms", "tomatoes", "cheese"]
+  },
+  {
+    "id": "fungi",
+    "name": "Фунги",
+    "basePrice": 30,
+    "ingredients": ["chicken", "salami", "mushrooms", "tomatoes"]
+  },
+  {
+    "id": "shpinato",
+    "name": "Шпинато",
+    "basePrice": 30,
+    "ingredients": ["chicken", "asparagus", "mozzarella", "cheese"]
+  },
+  {
+    "id": "djovano",
+    "name": "Джовано",
+    "basePrice": 30,
+    "ingredients": ["chicken", "tomatoes", "olive", "mozzarella", "cheese"]
+  },
+  {
+    "id": "kaprichosa",
+    "name": "Капричоза",
+    "basePrice": 30,
+    "ingredients": ["chicken", "mushrooms", "mozzarella", "tomatoes", "cheese"]
+  },
+  {
+    "id": "leonardo",
+    "name": "Леонардо",
+    "basePrice": 30,
+    "ingredients": ["salami", "mozzarella", "olive", "cheese"]
+  },
+  {
+    "id": "corleone",
+    "name": "Корлеоне",
+    "basePrice": 30,
+    "ingredients": ["fish", "mushrooms", "mozzarella", "goose", "cheese"]
+  },
+  {
+    "id": "peperochino",
+    "name": "Пеперончино",
+    "basePrice": 30,
+    "ingredients": ["chicken", "goose", "tomatoes", "cheese"]
+  },
+  {
+    "id": "tropikana",
+    "name": "Тропикана",
+    "basePrice": 30,
+    "ingredients": ["salami", "mozzarella", "chicken"]
+  },
+  {
+    "id": "grudo",
+    "name": "Поло-Грудо",
+    "basePrice": 30,
+    "ingredients": ["fish", "mushrooms", "asparagus", "cheese"]
+  },
+  {
+    "id": "toskana",
+    "name": "Тоскана",
+    "basePrice": 30,
+    "ingredients": ["salami", "tomatoes", "olive"]
+  },
+  {
+    "id": "sciliana",
+    "name": "Сицилиана",
+    "basePrice": 30,
+    "ingredients": ["salami", "tomatoes", "olive", "cheese"]
+  },
+  {
+    "id": "fattoria",
+    "name": "Фаттория",
+    "basePrice": 30,
+    "ingredients": ["chicken", "mushrooms", "mozzarella", "cheese"]
+  },
+  {
+    "id": "cardinale",
+    "name": "Кардинале",
+    "basePrice": 30,
+    "ingredients": ["fish", "tomatoes", "goose"]
+  },
+  {
+    "id": "kaza",
+    "name": "Каза",
+    "basePrice": 30,
+    "ingredients": ["chicken", "salami", "asparagus", "tomatoes", "mozzarella"]
+  }
+]
