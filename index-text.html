@@ -122,35 +122,46 @@
                 <input value="1" min="1" max="15" type="number" id="proshurro">
                 <span class="interactive-element">&nbsp;❌</span>
               </div>
-              <div class="item__ingredient">
-                <select name="add-ingredient" id="item--add">
-                  <option value="">Тунец</option>
-                  <option value="">Креветки</option>
-                  <option value="">Осьминог</option>
-                  <option value="">Кальмар</option>
-                  <option value="">Мидии</option>
-                  <option value="">Лимон</option>
-                </select> <span class="interactive-element">➕</span>
-              </div>
-              <button class="active-btn item__btn-save">Сохранить</button>
+<!--              <div class="item__ingredient">-->
+<!--                <select name="add-ingredient" id="item&#45;&#45;add">-->
+<!--                  <option value="">Тунец</option>-->
+<!--                  <option value="">Креветки</option>-->
+<!--                  <option value="">Осьминог</option>-->
+<!--                  <option value="">Кальмар</option>-->
+<!--                  <option value="">Мидии</option>-->
+<!--                  <option value="">Лимон</option>-->
+<!--                </select> <span class="interactive-element">➕</span>-->
+<!--              </div>              -->
             </div>
+            <div class="select-option">
+              <select class="add-ingredient" name="add-ingredient">
+              <option value="">Тунец</option>
+              <option value="">Креветки</option>
+              <option value="">Осьминог</option>
+              <option value="">Кальмар</option>
+              <option value="">Мидии</option>
+              <option value="">Лимон</option>
+            </select><span class="interactive-element"> ➕</span>
+            </div>
+            <button class="active-btn item__btn-save">Сохранить</button>
             <p class="item__calories">445 ккал</p>
             <p class="item__price">458 ₴</p>
           </div>
           <div class="card__side card__side--back">
             <img class="item__image" src="resources/img/pizza-img.jpg" alt="pizza IMG">
             <p class="item__name">Прошурро</p>
-            <p class="item__ingredients">тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
+            <p class="item__ingredients--list">тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
             <p class="item__calories">445 ккал</p>
             <p class="item__price">458 ₴</p>
           </div>
+          <div class="reverse-btn" id="reverseCard">↻</div>
         </div>
       </div>
       <div class="item--table">
         <div class="item-card">
           <img class="item__image" src="resources/img/pizza-img.jpg" alt="pizza IMG">
           <p class="item__name">Прошурро</p>
-          <p class="item__ingredients">тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
+          <p class="item__ingredients--list">тунец, креветки, осьминог, кальмар, мидии, лимон, оливки, маслины</p>
           <p class="item__calories">445 калорий</p>
           <p class="item__price">458 ₴</p>
         </div>
@@ -190,10 +201,17 @@
                 <option value="">Лимон</option>
               </select> <span class="interactive-element">➕</span>
             </div>
-            <button class="active-btn item__btn-edit" id="edit_ingredients">Изменить состав</button>
           </div>
+          <button class="active-btn item__btn-edit" id="edit_ingredients">Изменить состав</button>
           <p class="item__calories">445 калорий</p>
           <p class="item__price">458 ₴</p>
+        </div>
+      </div>
+      <div class="item--list">
+        <div class="item">
+          <img class="item__logo" src="resources/img/logo.png" alt="Pizza LOGO">
+          <div class="item__name">${item.name}</div>
+          <div class="item__price">${item.price} ₴</div>
         </div>
       </div>
     </main>
@@ -231,5 +249,15 @@
 <script src="js/content.js" defer></script>
 <script src="js/page-components.js" defer></script>
 <script src="js/site-builder.js" defer></script>
+<script>
+  let main = document.querySelector("main");
+  main.addEventListener("click", event => {
+    if (event.target.className === "reverse-btn") {
+      let reverse = event.target;
+      let card = reverse.parentNode;
+      card.classList.toggle("card--rotated");
+    }
+  })
+</script>
 </body>
 </html>

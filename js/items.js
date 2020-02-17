@@ -27,6 +27,17 @@ class Item {
       return acc + ingredient.calories;
     }, 0);
   }
+  includesIngredient(ingredientID) {
+    return this.ingredients.some(ingredient => ingredient.id === ingredientID);
+  }
+  addIngredient(ingredientID) {
+    this.ingredients.push(Ingredient.create(ingredientID));
+  }
+  updateIngredientQuantity(ingredientID, quantity) {
+    this.ingredients.forEach(ingredient => {
+      if (ingredient.id === ingredientID) ingredient.quantity = quantity
+    })
+  }
 }
 
 class Pizza extends Item {

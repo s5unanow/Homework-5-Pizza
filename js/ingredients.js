@@ -27,3 +27,15 @@ class Ingredient {
     if (ingredientID === "cheese") return new Ingredient("сыр", ingredientID, 30, 15);
   }
 }
+
+const allIngredientsMap = new Map();
+allIngredientsMap.set("fish", "рыба");
+allIngredientsMap.set("chicken", "курица");
+allIngredientsMap.set("salami", "салями");
+allIngredientsMap.set("mushrooms", "грибы");
+allIngredientsMap.set("asparagus", "спаржа");
+allIngredientsMap.set("tomatoes", "помидоры");
+allIngredientsMap.set("mozzarella", "моцарелла");
+allIngredientsMap.set("goose", "жёпка гуся");
+allIngredientsMap.set("olive", "оливки");
+allIngredientsMap.set("cheese", "сыр");

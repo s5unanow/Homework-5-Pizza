@@ -98,7 +98,7 @@ class Main extends PageComponent {
     let content = ``;
     this.viewedItems.forEach(item => {
       content = content + `
-      <div class="items-wrapper--list">
+      <div class="item--list">
         <div class="item">
           <img class="item__logo" src="resources/img/logo.png" alt="Pizza LOGO">
           <div class="item__name">${item.name}</div>

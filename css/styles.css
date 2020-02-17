@@ -117,27 +117,27 @@ main {
   font-size: 1.8rem;
 }
 
-.items-wrapper--list {
+.item--list {
   width: 100%;
   border: 1px solid grey;
 }
 
-.items-wrapper--list .item-card {
+.item--list .item-card {
   margin: 5px;
   display: flex;
   align-items: center;
 }
 
-.items-wrapper--list .item__price {
+.item--list .item__price {
   float: none;
   margin: 0;
 }
 
-.items-wrapper--list .item__name {
+.item--list .item__name {
   min-width: 300px;
 }
 
-.items-wrapper--list .item__logo {
+.item--list .item__logo {
   height: 50px;
   margin-right: 30px;
 }
