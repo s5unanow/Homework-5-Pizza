@@ -1,3 +1,5 @@
+"use strict";
+
 class Ingredient {
   constructor(name, id, calories, price, quantity = 1) {
     this.id = id;

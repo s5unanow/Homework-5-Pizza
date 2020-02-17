@@ -1,3 +1,5 @@
+"use strict";
+
 class PageComponent {
   constructor(name, content, parent = Utils.getBody()) {
     this.name = name;
@@ -39,7 +41,6 @@ class Main extends PageComponent {
     this.sortBy(SORT_VIEW_TYPES.NAME_ASC);
   }
   build() {
-    console.log(this.element);
     this.parent.appendChild(this.element);
   }
   update() {

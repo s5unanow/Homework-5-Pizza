@@ -1,3 +1,5 @@
+"use strict";
+
 SiteBuilder.initialize();
 
 let parentContainer = document.querySelector(".page-wrapper__inner");
@@ -36,4 +38,4 @@ DOMMain.element.addEventListener("click", event => {
     let card = reverse.parentNode;
     card.classList.toggle("card--rotated");
   }
-})
+});

@@ -1,3 +1,5 @@
+"use strict";
+
 class Item {
   constructor({ id, name, basePrice, ingredients }) {
     this.id = id;

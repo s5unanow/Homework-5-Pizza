@@ -1,3 +1,5 @@
+"use strict";
+
 class ItemMainComponent {
   constructor(item) {
     this.item = item;
@@ -110,9 +112,9 @@ class ItemMainComponent {
       </div>
       </div>`
   }
-  removeFromView() {
-    this.DOMElement.style.display = "none";
-  }
+  // removeFromView() {
+  //   this.DOMElement.style.display = "none";
+  // }
   reactToEvent(event) {
     let eventClasses = Array.from(event.target.classList);
     if (eventClasses.includes("delete-ingredient")) {

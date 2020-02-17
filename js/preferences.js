@@ -1,3 +1,5 @@
+"use strict";
+
 const SITE_VIEW_STYLE = {
   TABLE: "table",
   LIST: "list"

@@ -1,3 +1,5 @@
+"use strict";
+
 const initialState = `
     <div class="page-wrapper">
       <div class="page-wrapper__inner container">

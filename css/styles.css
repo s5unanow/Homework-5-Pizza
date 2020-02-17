@@ -19,6 +19,7 @@ body {
   position: relative;
   margin: 0 auto;
   max-width: 1024px;
+  background: white;
 }
 
 header {
@@ -103,12 +104,14 @@ main {
   position: relative;
   flex-basis: 33%;
   border: 1px solid grey;
+  border-radius: 8px;
   text-align: center;
+  /*background: #ffd082;*/
 }
 
 .card {
   position: relative;
-  height: var(--card-heit);
+  min-height: var(--card-heit);
   perspective: 1500px;
 }
 
@@ -116,7 +119,7 @@ main {
   position: absolute;
   top: 0;
   bottom: 0;
-  height: var(--card-heit);
+  min-height: var(--card-heit);
   width: 100%;
   transition: all .8s;
   backface-visibility: hidden;
@@ -169,6 +172,8 @@ main {
 .item__ingredients {
   text-align: left;
   min-height: 24px;
+  max-height: 170px;
+  overflow: auto;
 }
 
 .item__ingredient input{
@@ -191,7 +196,7 @@ main {
 
 .item__ingredient label {
   display: inline-block;
-  width: 160px;
+  width: 155px;
 }
 
 .item__ingredient label:first-letter {

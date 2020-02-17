@@ -1,3 +1,5 @@
+"use strict";
+
 class Utils {
   static getBody () {
     return document.querySelector("body");
