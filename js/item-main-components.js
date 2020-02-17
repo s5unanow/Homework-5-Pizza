@@ -184,6 +184,7 @@ itemMainComponents.forEach(component => {
     component.reactToEvent(event);
   });
   component.DOMElement.addEventListener("input", event => {
+    normalizeInput(event);
     component.reactToEvent(event);
   })
 });
@@ -194,4 +195,10 @@ function createDOMElement(tag, className, innerHTML, id) {
   if (innerHTML) element.innerHTML = innerHTML;
   if (id) element.id = id;
   return element
+}
+
+function normalizeInput(event) {
+  let value = event.target.value;
+  if (value > 15) event.target.value = 15;
+  if (value < 1) event.target.value = 1;
 }
