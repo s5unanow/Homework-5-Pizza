@@ -42,20 +42,23 @@ class Main extends PageComponent {
     console.log(this.element);
     this.parent.appendChild(this.element);
   }
+  update() {
+
+  }
   filterBy(filter) {
     let mainItems = [...this.mainItems];
     if (!filter.active) {
       this.viewedItems = this.mainItems;
     } else {
       for (let ingredient of filter.ingredients) {
-        mainItems = mainItems.filter(item => item.ingredientsIDArray().includes(ingredient));
+        mainItems = mainItems.filter(item => item.item.ingredientsIDArray().includes(ingredient));
       }
     }
     this.viewedItems = mainItems;
     this.setTableStyle();
     if (mainItems.length === 0) {
-      this.content = `
-      <div class="mainItems__no--mainItems">
+      this.element.innerHTML = `
+      <div class="items__no--items">
         <h2>Ничего не найдено по запросу!</h2>
       </div>`
     }
@@ -63,21 +66,22 @@ class Main extends PageComponent {
   }
   sortBy(sorter) {
     if (sorter === SORT_VIEW_TYPES.NAME_ASC) {
-      this.viewedItems = this.mainItems.sort((item1, item2) => Utils.sorter(item1.name, item2.name));
+      this.viewedItems = this.mainItems.sort((item1, item2) => Utils.sorter(item1.item.name, item2.item.name));
     }
     if (sorter === SORT_VIEW_TYPES.NAME_DESC) {
-      this.viewedItems = this.mainItems.sort((item1, item2) => Utils.sorterReverse(item1.name, item2.name));
+      this.viewedItems = this.mainItems.sort((item1, item2) => Utils.sorterReverse(item1.item.name, item2.item.name));
     }
     if (sorter === SORT_VIEW_TYPES.PRICE_ASC) {
-      this.viewedItems = this.mainItems.sort((item1, item2) => Utils.sorterReverse(item1.price, item2.price));
+      this.viewedItems = this.mainItems.sort((item1, item2) => Utils.sorterReverse(item1.item.price, item2.item.price));
     }
     if (sorter === SORT_VIEW_TYPES.PRICE_DESC) {
-      this.viewedItems = this.mainItems.sort((item1, item2) => Utils.sorter(item1.price, item2.price));
+      this.viewedItems = this.mainItems.sort((item1, item2) => Utils.sorter(item1.item.price, item2.item.price));
     }
     this.setListStyle();
     return this
   }
   setTableStyle() {
+    console.log("tableStyle");
     this.element.innerHTML = ``;
     this.viewedItems.forEach(mainItem => {
       this.element.appendChild(mainItem.getTableViewElement());

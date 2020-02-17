@@ -113,13 +113,6 @@ class ItemMainComponent {
   removeFromView() {
     this.DOMElement.style.display = "none";
   }
-  includesIngredients() {
-    return
-  }
-  getDOMElement() {
-
-  }
-
   reactToEvent(event) {
     let eventClasses = Array.from(event.target.classList);
     if (eventClasses.includes("delete-ingredient")) {
@@ -143,14 +136,14 @@ class ItemMainComponent {
   }
   addIngredient(event) {
     let ingredientID = event.target.previousElementSibling.value;
-    console.log(ingredientID);
-    this.item.addIngredient(ingredientID);
-    this.removeOptionDOMSelect(ingredientID);
-    this.addIngredientToDOMIngredients(ingredientID);
-    this.updatePriceAndCalories();
+    if (ingredientID) {
+      this.item.addIngredient(ingredientID);
+      this.removeOptionDOMSelect(ingredientID);
+      this.addIngredientToDOMIngredients(ingredientID);
+      this.updatePriceAndCalories();
+    }
   }
   updateIngredientValue(event) {
-    console.log("here");
     let ingredientID = event.target.className;
     let quantity = event.target.value;
     this.item.updateIngredientQuantity(ingredientID, quantity);
