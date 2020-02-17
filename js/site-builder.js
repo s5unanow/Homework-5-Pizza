@@ -39,11 +39,7 @@ class SiteBuilder {
     });
   }
   clearParent() {
-    this.parent.innerHTML = `
-    <div class="page-wrapper">
-      <div class="page-wrapper__inner container">
-      </div>
-    </div>`;
+    this.parent.innerHTML = ``;
   }
   updateTableStyle() {
     this.components.forEach(component => {

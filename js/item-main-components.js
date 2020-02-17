@@ -1,5 +1,5 @@
 class ItemMainComponent {
-  constructor(item, ) {
+  constructor(item) {
     this.item = item;
     this.DOMElement = this.createDOMElement();
     this.DOMIgredients = this.createDOMIngredients();
@@ -20,27 +20,48 @@ class ItemMainComponent {
       let DOMIngredient = this.createDOMIngredient(ingredient);
       DOMIngredients.appendChild(DOMIngredient);
     });
+    return DOMIngredients
   }
   createDOMIngredient(ingredient) {
     let DOMIngredient = document.createElement("div");
     DOMIngredient.className = "item__ingredient";
     DOMIngredient.innerHTML = `
-      <label for="${this.item.id}-${ingredient.id}">Тунец </label>
-      <input value="${ingredient.quantity}" min="1" max="15" type="number" id="${this.item.id}-${ingredient.id}">
-      <span class="interactive-element delete-ingredient">&nbsp;❌</span>`;
+      <label for="${this.item.id}-${ingredient.id}">${ingredient.name} </label>
+      <input disabled value="${ingredient.quantity}" pattern="\d" min="1" max="15" type="number" class=${ingredient.id} id="${this.item.id}-${ingredient.id}">
+      <span class="interactive-element delete-ingredient ingredient__edit--toggle ingredient__edit--hide">&nbsp;❌</span>`;
     return DOMIngredient
   }
+  addIngredientToDOMIngredients(ingredientID) {
+    let ingredientName = allIngredientsMap.get(ingredientID);
+    let DOMIngredient = document.createElement("div");
+    DOMIngredient.className = "item__ingredient";
+    DOMIngredient.innerHTML = `
+      <label for="${this.item.id}-${ingredientID}">${ingredientName} </label>
+      <input value="1" min="1" max="15" type="number" class=${ingredientID} id="${this.item.id}-${ingredientID}">
+      <span class="interactive-element delete-ingredient ingredient__edit--toggle">&nbsp;❌</span>`;
+    this.DOMIgredients.appendChild(DOMIngredient);
+  }
   createDOMSelect() {
-    let DOMSelect = document.createElement("select");
-    allIngredientsMap.forEach((IngredientName, IngredientID) => {
-      if (!this.item.includesIngredient(IngredientID)) {
+    let DOMSelect = createDOMElement("select", "add-ingredient");
+    allIngredientsMap.forEach((ingredientName, ingredientID) => {
+      if (!this.item.includesIngredient(ingredientID)) {
         let option = document.createElement("option");
-        option.value = IngredientID;
-        option.innerText = IngredientName;
+        option.value = ingredientID;
+        option.innerText = ingredientName;
         DOMSelect.appendChild(option);
       }
     });
     return DOMSelect
+  }
+  addOptionDOMSelect(ingredientID) {
+    let option = document.createElement("option");
+    option.value = ingredientID;
+    option.innerText = allIngredientsMap.get(ingredientID);
+    this.DOMSelect.appendChild(option);
+  }
+  removeOptionDOMSelect(ingredientID) {
+    let option = this.DOMSelect.querySelector(`option[value=${ingredientID}`);
+    this.DOMSelect.removeChild(option);
   }
   createDOMCalories() {
     let DOMPrice = document.createElement("p");
@@ -57,28 +78,28 @@ class ItemMainComponent {
   initializeDOMElement() {
     let DOMCard = createDOMElement("div", "card");
     let DOMCardFront = createDOMElement("div", "card__side card__side--front");
-    let DOMCardBack = createDOMElement("div", "card__side card__side--front");
+    let DOMCardBack = createDOMElement("div", "card__side card__side--back");
     DOMCardBack.innerHTML = `
-      <img class="item__image" src="resources/img/${this.item.name}.jpg" alt="pizza IMG">
+      <img class="item__image" src="resources/img/${this.item.name}.png" alt="pizza IMG">
       <p class="item__name">${this.item.name}</p>
-      <p class="item__ingredients">${this.item.ingredientsList()}</p>
+      <p class="item__ingredients--list">${this.item.ingredientsList()}</p>
       <p class="item__calories">${this.item.calories} ккал</p>
       <p class="item__price">${this.item.price} ₴</p>
     `;
     let DOMName = createDOMElement("p", "item__name", this.item.name);
     let reverseButton = createDOMElement("div", "reverse-btn", "↻", "reverseCard");
-    let saveButton = createDOMElement("button", "active-btn item__btn-save", "Сохранить");
-    let editButton = createDOMElement("button", "active-btn item__btn-edit", "Изменить состав");
-    let selectDIV = createDOMElement("div", "select-option");
-    let addElement = createDOMElement("span", "interactive-element add-ingredient", " ➕");
+    let saveButton = createDOMElement("button", "active-btn item__btn-save ingredient__edit--toggle ingredient__edit--hide", "Сохранить");
+    let editButton = createDOMElement("button", "active-btn item__btn-edit ingredient__edit--toggle", "Изменить состав");
+    let selectDIV = createDOMElement("div", "select-option ingredient__edit--toggle ingredient__edit--hide");
+    let addElement = createDOMElement("span", "interactive-element add-ingredient-btn", " ➕");
 
     this.DOMElement.appendChild(DOMCard);
     DOMCard.append(DOMCardFront, DOMCardBack, reverseButton);
     DOMCardFront.append(DOMName, this.DOMIgredients, selectDIV, saveButton, editButton, this.DOMCalories, this.DOMPrice);
-
+    selectDIV.append(this.DOMSelect, addElement);
   }
   getTableViewElement() {
-
+    return this.DOMElement;
   }
   getListView() {
     return `<div class="item--list">
@@ -90,7 +111,7 @@ class ItemMainComponent {
       </div>`
   }
   removeFromView() {
-
+    this.DOMElement.style.display = "none";
   }
   includesIngredients() {
     return
@@ -98,28 +119,84 @@ class ItemMainComponent {
   getDOMElement() {
 
   }
-  updatePriceAndCalories() {
 
-  }
   reactToEvent(event) {
-
+    let eventClasses = Array.from(event.target.classList);
+    if (eventClasses.includes("delete-ingredient")) {
+      this.removeIngredient(event);
+    }
+    if (eventClasses.includes("add-ingredient-btn")) {
+      this.addIngredient(event);
+    }
+    if (event.type === "input" && event.target.nodeName === "INPUT") {
+      this.updateIngredientValue(event);
+    }
+    if (eventClasses.includes("item__btn-edit")) this.showEdit();
+    if (eventClasses.includes("item__btn-save")) this.hideEdit();
+  }
+  removeIngredient(event) {
+    let ingredientID = event.target.previousElementSibling.className;
+    this.item.removeIngredient(ingredientID);
+    event.target.parentNode.remove();
+    this.addOptionDOMSelect(ingredientID);
+    this.updatePriceAndCalories()
+  }
+  addIngredient(event) {
+    let ingredientID = event.target.previousElementSibling.value;
+    console.log(ingredientID);
+    this.item.addIngredient(ingredientID);
+    this.removeOptionDOMSelect(ingredientID);
+    this.addIngredientToDOMIngredients(ingredientID);
+    this.updatePriceAndCalories();
+  }
+  updateIngredientValue(event) {
+    console.log("here");
+    let ingredientID = event.target.className;
+    let quantity = event.target.value;
+    this.item.updateIngredientQuantity(ingredientID, quantity);
+    this.updatePriceAndCalories()
+  }
+  updatePriceAndCalories() {
+    this.updatePrices();
+    this.updateCalories();
+  }
+  updateCalories() {
+    let prices = Array.from(this.DOMElement.querySelectorAll(".item__calories"));
+    prices.forEach(price => price.innerHTML = `${this.item.calories} ккал`);
+  }
+  updatePrices() {
+    let prices = Array.from(this.DOMElement.querySelectorAll(".item__price"));
+    prices.forEach(price => price.innerHTML = `${this.item.price} ₴`);
+  }
+  showEdit() {
+    let toggled = Array.from(this.DOMElement.querySelectorAll(".ingredient__edit--toggle"));
+    toggled.forEach(element => element.classList.toggle("ingredient__edit--hide"));
+    let inputs = Array.from(this.DOMElement.querySelectorAll("input"));
+    inputs.forEach(input => input.disabled = false);
+  }
+  hideEdit() {
+    let toggled = Array.from(this.DOMElement.querySelectorAll(".ingredient__edit--toggle"));
+    toggled.forEach(element => element.classList.toggle("ingredient__edit--hide"));
+    let inputs = Array.from(this.DOMElement.querySelectorAll("input"));
+    inputs.forEach(input => input.disabled = true);
   }
 }
 
-const itemMainComponents = items.map(item => {
-
-});
+const itemMainComponents = items.map(item => new ItemMainComponent(item));
 
 itemMainComponents.forEach(component => {
   component.DOMElement.addEventListener("click", event => {
+    component.reactToEvent(event);
+  });
+  component.DOMElement.addEventListener("input", event => {
     component.reactToEvent(event);
   })
 });
 
 function createDOMElement(tag, className, innerHTML, id) {
   let element = document.createElement(tag);
-  element.className = className;
-  element.innerHTML = innerHTML;
-  element.id = id;
+  if (className) element.className = className;
+  if (innerHTML) element.innerHTML = innerHTML;
+  if (id) element.id = id;
   return element
 }

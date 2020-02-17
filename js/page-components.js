@@ -31,31 +31,31 @@ class AsideMenu extends PageComponent {
 }
 
 class Main extends PageComponent {
-  constructor(name, content, parent, items) {
+  constructor(name, content, parent, mainItems) {
     super(name, content, parent);
-    this.items = items;
-    this.viewedItems = items;
+    this.mainItems = mainItems;
+    this.viewedItems = mainItems;
     this.hasLayoutStyle = true;
     this.sortBy(SORT_VIEW_TYPES.NAME_ASC);
   }
   build() {
-    this.element.innerHTML = this.content;
+    console.log(this.element);
     this.parent.appendChild(this.element);
   }
   filterBy(filter) {
-    let items = [...this.items];
+    let mainItems = [...this.mainItems];
     if (!filter.active) {
-      this.viewedItems = this.items;
+      this.viewedItems = this.mainItems;
     } else {
       for (let ingredient of filter.ingredients) {
-        items = items.filter(item => item.ingredientsIDArray().includes(ingredient));
+        mainItems = mainItems.filter(item => item.ingredientsIDArray().includes(ingredient));
       }
     }
-    this.viewedItems = items;
+    this.viewedItems = mainItems;
     this.setTableStyle();
-    if (items.length === 0) {
+    if (mainItems.length === 0) {
       this.content = `
-      <div class="items__no--items">
+      <div class="mainItems__no--mainItems">
         <h2>Ничего не найдено по запросу!</h2>
       </div>`
     }
@@ -63,50 +63,34 @@ class Main extends PageComponent {
   }
   sortBy(sorter) {
     if (sorter === SORT_VIEW_TYPES.NAME_ASC) {
-      this.viewedItems = this.items.sort((item1, item2) => Utils.sorter(item1.name, item2.name));
+      this.viewedItems = this.mainItems.sort((item1, item2) => Utils.sorter(item1.name, item2.name));
     }
     if (sorter === SORT_VIEW_TYPES.NAME_DESC) {
-      this.viewedItems = this.items.sort((item1, item2) => Utils.sorterReverse(item1.name, item2.name));
+      this.viewedItems = this.mainItems.sort((item1, item2) => Utils.sorterReverse(item1.name, item2.name));
     }
     if (sorter === SORT_VIEW_TYPES.PRICE_ASC) {
-      this.viewedItems = this.items.sort((item1, item2) => Utils.sorterReverse(item1.price, item2.price));
+      this.viewedItems = this.mainItems.sort((item1, item2) => Utils.sorterReverse(item1.price, item2.price));
     }
     if (sorter === SORT_VIEW_TYPES.PRICE_DESC) {
-      this.viewedItems = this.items.sort((item1, item2) => Utils.sorter(item1.price, item2.price));
+      this.viewedItems = this.mainItems.sort((item1, item2) => Utils.sorter(item1.price, item2.price));
     }
     this.setListStyle();
     return this
   }
   setTableStyle() {
-    let content = ``;
-    this.viewedItems.forEach(item => {
-      content = content +`
-      <div class="item--table">
-        <div class="item-card">
-          <img class="item__image" src="resources/img/${item.name}.png" alt="pizza IMG">
-          <p class="item__name">${item.name}</p>
-          <p class="item__ingredients">${item.ingredientsList()}</p>
-          <p class="item__calories">${item.calories} ккал</p>
-          <p class="item__price">${item.price} ₴</p>
-        </div>
-      </div>`;
+    this.element.innerHTML = ``;
+    this.viewedItems.forEach(mainItem => {
+      this.element.appendChild(mainItem.getTableViewElement());
     });
-    this.content = content;
     return this
   }
   setListStyle() {
     let content = ``;
-    this.viewedItems.forEach(item => {
-      content = content + `
-      <div class="item--list">
-        <div class="item">
-          <img class="item__logo" src="resources/img/logo.png" alt="Pizza LOGO">
-          <div class="item__name">${item.name}</div>
-          <div class="item__price">${item.price} ₴</div>
-        </div>
-      </div>`
+    this.viewedItems.forEach(mainItem => {
+      content = content + mainItem.getListView();
     });
     this.content = content;
+    this.element.innerHTML = this.content;
     return this
   }
 }

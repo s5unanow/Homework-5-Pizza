@@ -1,4 +1,22 @@
+:root {
+  --card-heit: 380px;
+}
+
+* {
+  /*box-sizing: border-box;*/
+}
+
+body {
+  margin: 0;
+}
+.page-wrapper {
+  padding-top: 1rem;
+  min-height: 100vh;
+  /*background-image: url("../resources/img/background.jpg");*/
+}
+
 .page-wrapper__inner {
+  position: relative;
   margin: 0 auto;
   max-width: 1024px;
 }
@@ -75,7 +93,6 @@ main {
   width: 80%;
   display: flex;
   flex-wrap: wrap;
-  /*justify-content: space-between;*/
 }
 
 .items__no--items {
@@ -83,9 +100,61 @@ main {
 }
 
 .item--table {
+  position: relative;
   flex-basis: 33%;
   border: 1px solid grey;
   text-align: center;
+}
+
+.card {
+  position: relative;
+  height: var(--card-heit);
+  perspective: 1500px;
+}
+
+.card__side {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: var(--card-heit);
+  width: 100%;
+  transition: all .8s;
+  backface-visibility: hidden;
+}
+
+.card__side--front {
+
+}
+
+.card__side--back {
+  transform: rotateY(-180deg);
+}
+
+/*.card:active .card__side--front {*/
+/*  transform: rotateY(180deg);*/
+/*}*/
+
+/*.card:active .card__side--back {*/
+/*  transform: rotateY(0);*/
+/*}*/
+.card--rotated .card__side--front {
+  transform: rotateY(180deg);
+}
+
+.card--rotated .card__side--back {
+  transform: rotateY(0);
+}
+
+.reverse-btn {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.item--table .item-card {
+  background: white;
 }
 
 .item__image {
@@ -98,22 +167,88 @@ main {
 }
 
 .item__ingredients {
+  text-align: left;
   min-height: 24px;
 }
 
-.item__ingredients:first-letter {
+.item__ingredient input{
+  width: 2.5em;
+  border: 1px solid gainsboro;
+  border-radius: 3px;
+}
+
+.ingredient__edit--toggle {
+}
+
+.ingredient__edit--hide {
+  display: none;
+}
+
+.item__ingredient {
+  margin: .3rem 1rem;
+  font-size: 1.1rem;
+}
+
+.item__ingredient label {
+  display: inline-block;
+  width: 160px;
+}
+
+.item__ingredient label:first-letter {
+  text-transform: uppercase;
+}
+
+.select-option {
+  text-align: left;
+}
+
+.add-ingredient {
+  margin-left: 15px;
+  border: 1px solid gainsboro;
+  border-radius: 3px;
+  font-family: serif;
+  font-size: 1.1rem;
+}
+
+.add-ingredient option:first-letter {
+  text-transform: uppercase;
+}
+
+.item__btn-edit {
+  position: relative;
+  left: 60px;
+  top: 15px;
+}
+
+.item__btn-save {
+  position: relative;
+  top: 15px;
+  left: 80px;
+}
+
+.interactive-element {
+  font-size: .8rem;
+  cursor: pointer;
+}
+.card__side--back .item__ingredients {
+  text-align: center;
+}
+
+.item__ingredients--list:first-letter {
   text-transform: uppercase;
 }
 
 .item__calories {
-  float: left;
-  margin-left: 10px;
+  position: absolute;
+  left: 15px;
+  bottom: 20px;
 }
 
 .item__price {
-  float: right;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  position: absolute;
+  right: 15px;
+  bottom: 5px;
+  margin-bottom: 0;
   font-size: 1.8rem;
 }
 
@@ -122,15 +257,15 @@ main {
   border: 1px solid grey;
 }
 
-.item--list .item-card {
+.item--list .item {
   margin: 5px;
   display: flex;
   align-items: center;
 }
 
 .item--list .item__price {
-  float: none;
   margin: 0;
+  position: relative;
 }
 
 .item--list .item__name {
@@ -158,6 +293,7 @@ ul {
   text-align: center;
   background: #ff7c7c;
   color: white;
+  border-radius: 0 0 40px 40px;
 }
 
 .footer__row {
@@ -206,3 +342,10 @@ ul {
   transform: translateY(-10px);
   box-shadow: 3px 3px 5px 6px #ccc;
 }
+
+.active-btn {
+  background: #ff7c7c;
+  padding: 4px;
+  border-radius: 4px;
+}
+

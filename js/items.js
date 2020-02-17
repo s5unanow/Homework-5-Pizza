@@ -38,6 +38,9 @@ class Item {
       if (ingredient.id === ingredientID) ingredient.quantity = quantity
     })
   }
+  removeIngredient(ingredientID) {
+    this.ingredients = this.ingredients.filter(ingredient => ingredient.id !== ingredientID)
+  }
 }
 
 class Pizza extends Item {

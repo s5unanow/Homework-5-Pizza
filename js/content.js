@@ -11,7 +11,7 @@ const initialState = `
       </div>
     </div>`;
 
-const headerContent = `    <header>
+const headerContent = `
       <div class="header__logo-box">
         <img src="resources/img/logo.png" alt="LOGO">
       </div>
@@ -38,7 +38,7 @@ const headerContent = `    <header>
         <img id="switch-view__list" src="resources/img/switch--list.png" alt="Switch to list view">
         <img id="switch-view__table" src="resources/img/switch--table.png" alt="Switch to table view">
       </div>
-    </header>`;
+`;
 
 const asideFilterListContent = `
 <select name="sorter" id="sorter">
@@ -48,7 +48,7 @@ const asideFilterListContent = `
   <option value="price_desc">Цена: возрастание </option>
 </select>`;
 
-const asideFilterTableContent = `    <aside>
+const asideFilterTableContent = `
       <div class="aside-container">
         <div class="filter">
           <div class="filter__section filter__ingredients">
@@ -75,9 +75,9 @@ const asideFilterTableContent = `    <aside>
           <div id="remove-filters" class="remove-filters">Сбросить всё</div>
         </div>
       </div>
-    </aside>`;
+`;
 
-const footerContent = `    <footer>
+const footerContent = `
       <div class="footer__inner">
         <div class="footer__phone footer__row">8 800 555 35 35</div>
         <div class="footer__callback footer__row">Callback</div>
@@ -97,7 +97,7 @@ const footerContent = `    <footer>
           </ul>
         </div>
       </div>
-    </footer>`;
+`;
 
 const zeroResult = `
       <div class="items__no--items">

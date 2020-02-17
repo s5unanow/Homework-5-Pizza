@@ -3,7 +3,7 @@ SiteBuilder.initialize();
 let parentContainer = document.querySelector(".page-wrapper__inner");
 let DOMHeader = new PageComponent("header", headerContent, parentContainer);
 let DOMAsideMenu = new AsideMenu("aside", null, parentContainer);
-let DOMMain = new Main("main", null, parentContainer, items);
+let DOMMain = new Main("main", null, parentContainer, itemMainComponents);
 let DOMFooter = new PageComponent("footer", footerContent, parentContainer);
 
 const pageComponents = new PageComponents(DOMHeader, DOMAsideMenu, DOMMain, DOMFooter);
@@ -29,3 +29,11 @@ filterMenu.addEventListener("click", event => {
 filterMenu.addEventListener("change", event => {
   controller.reactToSorter(event);
 });
+
+DOMMain.element.addEventListener("click", event => {
+  if (event.target.className === "reverse-btn") {
+    let reverse = event.target;
+    let card = reverse.parentNode;
+    card.classList.toggle("card--rotated");
+  }
+})
