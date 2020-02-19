@@ -1,5 +1,6 @@
 :root {
   --card-heit: 380px;
+  --order-item-height: 75px;
 }
 
 * {
@@ -48,8 +49,13 @@ header {
   cursor: pointer;
 }
 
-.switch-view--inactive {
-  opacity: 30%;
+.switch-view__element {
+  opacity: .5;
+  transition: opacity .2s;
+}
+
+.switch-view__element:hover {
+  opacity: 1;
 }
 
 .social li,
@@ -333,8 +339,121 @@ ul {
 }
 
 .active-btn {
-  background: #ff7c7c;
+  background: #d3ff82;
   padding: 4px;
   border-radius: 4px;
 }
 
+/*All the bucket stuff*/
+
+.bucket {
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.bucket__info {
+  position: relative;
+  z-index: 1000;
+}
+
+.bucket__quantity {
+  position: absolute;
+  right: 10px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: #ff7c7c;
+}
+
+.bucket__quantity {
+  font-size: .9rem;
+  color: white;
+}
+
+.bucket__list {
+  position: absolute;
+  right: -3px;
+  top: -3px;
+  width: 350px;
+  height: 400px;
+  padding: 50px 10px 0 10px;
+  background: white;
+  border: 1px solid gainsboro;
+  z-index: 900;
+  display: none;
+}
+
+.bucket__list--cards {
+  overflow: auto;
+  height: 340px;
+}
+
+.bucket:hover .bucket__list {
+  display: block;
+}
+
+.bucket__list--item {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.bucket__list--item div {
+  display: inline-block;
+}
+
+.bucket-item__col-3 {
+  height:  var(--order-item-height);
+  margin-left: 20px;
+}
+
+.bucket-item__name {
+  margin-top: 8px;
+  font-size: 1.2rem;
+}
+
+.bucket-item__col-3 div{
+  display: block;
+  width: 120px;
+}
+
+.bucket-item__quantity {
+  margin-top: 10px;
+}
+
+.bucket-item__img img {
+  margin-left: 15px;
+  border-radius: 10px;
+  height: var(--order-item-height);
+}
+
+.bucket-item__quantity input {
+  width: 35px;
+}
+
+.bucket-item__price {
+  font-size: 1.5rem;
+}
+
+.bucket__order {
+  height: 60px;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+.order-sum-price {
+  text-decoration: underline;
+  margin-left: 70px;
+  width: 85px;
+  font-size: 1.6rem;
+}
+
+.order-btn {
+  margin-left: 75px;
+  font-size: 1.2rem;
+  height: 37px;
+  width: 110px;
+  background: #ff5154;
+}
