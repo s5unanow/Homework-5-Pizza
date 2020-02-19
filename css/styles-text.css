@@ -241,7 +241,7 @@ main {
 
 .item__price {
   position: absolute;
-  right: 15px;
+  right: 60px;
   bottom: 5px;
   margin-bottom: 0;
   font-size: 1.8rem;
@@ -270,6 +270,14 @@ main {
 .item--list .item__logo {
   height: 50px;
   margin-right: 30px;
+}
+
+.item-order {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  background: #ff7c7c;
+  font-size: 1.2rem;
 }
 
 li a {

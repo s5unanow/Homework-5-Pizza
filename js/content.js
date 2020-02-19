@@ -37,8 +37,8 @@ const headerContent = `
         </div>
       </div>
       <div class="switch-view">
-        <img id="switch-view__list" src="resources/img/switch--list.png" alt="Switch to list view">
-        <img id="switch-view__table" src="resources/img/switch--table.png" alt="Switch to table view">
+        <img id="switch-view__table" class="switch-view__element" src="resources/img/switch--table.png" alt="Switch to table view">
+        <img id="switch-view__list" class="switch-view__element" src="resources/img/switch--list.png" alt="Switch to list view">
       </div>
 `;
 

@@ -7,8 +7,9 @@ let DOMHeader = new PageComponent("header", headerContent, parentContainer);
 let DOMAsideMenu = new AsideMenu("aside", null, parentContainer);
 let DOMMain = new Main("main", null, parentContainer, itemMainComponents);
 let DOMFooter = new PageComponent("footer", footerContent, parentContainer);
+let DOMBucket = new Bucket(parentContainer);
 
-const pageComponents = new PageComponents(DOMHeader, DOMAsideMenu, DOMMain, DOMFooter);
+const pageComponents = new PageComponents(DOMHeader, DOMAsideMenu, DOMMain, DOMFooter, DOMBucket);
 const siteBuilder = new SiteBuilder(pageComponents, parentContainer);
 const controller = new Controller(siteBuilder);
 

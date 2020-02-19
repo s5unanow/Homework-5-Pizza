@@ -90,13 +90,14 @@ class ItemMainComponent {
     `;
     let DOMName = createDOMElement("p", "item__name", this.item.name);
     let reverseButton = createDOMElement("div", "reverse-btn", "↻", "reverseCard");
+    let bucketButton = createDOMElement("button", "active-btn item-order", "🛒", `order-${this.item.id}`);
     let saveButton = createDOMElement("button", "active-btn item__btn-save ingredient__edit--toggle ingredient__edit--hide", "Сохранить");
     let editButton = createDOMElement("button", "active-btn item__btn-edit ingredient__edit--toggle", "Изменить состав");
     let selectDIV = createDOMElement("div", "select-option ingredient__edit--toggle ingredient__edit--hide");
     let addElement = createDOMElement("span", "interactive-element add-ingredient-btn", " ➕");
 
     this.DOMElement.appendChild(DOMCard);
-    DOMCard.append(DOMCardFront, DOMCardBack, reverseButton);
+    DOMCard.append(DOMCardFront, DOMCardBack, reverseButton, bucketButton);
     DOMCardFront.append(DOMName, this.DOMIgredients, selectDIV, saveButton, editButton, this.DOMCalories, this.DOMPrice);
     selectDIV.append(this.DOMSelect, addElement);
   }
@@ -112,9 +113,6 @@ class ItemMainComponent {
       </div>
       </div>`
   }
-  // removeFromView() {
-  //   this.DOMElement.style.display = "none";
-  // }
   reactToEvent(event) {
     let eventClasses = Array.from(event.target.classList);
     if (eventClasses.includes("delete-ingredient")) {
@@ -128,6 +126,7 @@ class ItemMainComponent {
     }
     if (eventClasses.includes("item__btn-edit")) this.showEdit();
     if (eventClasses.includes("item__btn-save")) this.hideEdit();
+    if (eventClasses.includes("item-order")) DOMBucket.outerAddItem(this.item);
   }
   removeIngredient(event) {
     let ingredientID = event.target.previousElementSibling.className;

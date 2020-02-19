@@ -1,12 +1,12 @@
 "use strict";
 
 class Item {
-  constructor({ id, name, basePrice, ingredients }) {
+  constructor({ id, name, basePrice = 30, ingredients, baseCalories = 300 }) {
     this.id = id;
     this.name = name;
     this.basePrice = basePrice;
     this.ingredients = this.composeIngredients(ingredients);
-    this.baseCalories = 300;
+    this.baseCalories = baseCalories;
     this.price;
     this.calories;
   }
@@ -46,8 +46,20 @@ class Item {
 }
 
 class Pizza extends Item {
-  constructor({ id, name, basePrice, ingredients }) {
-    super({ id, name, basePrice, ingredients });
+  constructor({ id, name, basePrice, ingredients, baseCalories }) {
+    super({ id, name, basePrice, ingredients, baseCalories });
+  }
+  static createPizzaFromStorage(itemData) {
+    let ingredients = [];
+    for (let ingredient of itemData.ingredients) {
+      ingredients.push(ingredient.id);
+    }
+    let pizza =  new Pizza({id: itemData.id, name: itemData.name, ingredients: ingredients });
+    pizza.ingredients.forEach(ingredient => {
+      let quantity = itemData.ingredients.filter(dataIngredient => dataIngredient.id === ingredient.id)[0].quantity;
+      pizza.updateIngredientQuantity(ingredient.id, quantity)
+    });
+    return pizza
   }
 }
 
