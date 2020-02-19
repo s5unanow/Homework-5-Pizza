@@ -2,7 +2,8 @@
 
 class ItemMainComponent {
   constructor(item) {
-    this.item = item;
+    this.pureItem = {...item};
+    this.item = Pizza.createPizzaFromStorage(item);
     this.DOMElement = this.createDOMElement();
     this.DOMIgredients = this.createDOMIngredients();
     this.DOMSelect = this.createDOMSelect();
@@ -82,7 +83,7 @@ class ItemMainComponent {
     let DOMCardFront = createDOMElement("div", "card__side card__side--front");
     let DOMCardBack = createDOMElement("div", "card__side card__side--back");
     DOMCardBack.innerHTML = `
-      <img class="item__image" src="resources/img/${this.item.name}.png" alt="pizza IMG">
+      <img class="item__image" src="resources/img/${this.item.name}.png" onerror="this.src='resources/img/default-img.png'" alt="pizza IMG">
       <p class="item__name">${this.item.name}</p>
       <p class="item__ingredients--list">${this.item.ingredientsList()}</p>
       <p class="item__calories">${this.item.calories} ккал</p>
@@ -90,7 +91,7 @@ class ItemMainComponent {
     `;
     let DOMName = createDOMElement("p", "item__name", this.item.name);
     let reverseButton = createDOMElement("div", "reverse-btn", "↻", "reverseCard");
-    let bucketButton = createDOMElement("button", "active-btn item-order", "🛒", `order-${this.item.id}`);
+    let bucketButton = createDOMElement("button", "active-btn item-order ingredient__edit--toggle", "🛒", `order-${this.item.id}`);
     let saveButton = createDOMElement("button", "active-btn item__btn-save ingredient__edit--toggle ingredient__edit--hide", "Сохранить");
     let editButton = createDOMElement("button", "active-btn item__btn-edit ingredient__edit--toggle", "Изменить состав");
     let selectDIV = createDOMElement("div", "select-option ingredient__edit--toggle ingredient__edit--hide");
@@ -125,7 +126,16 @@ class ItemMainComponent {
       this.updateIngredientValue(event);
     }
     if (eventClasses.includes("item__btn-edit")) this.showEdit();
-    if (eventClasses.includes("item__btn-save")) this.hideEdit();
+    if (eventClasses.includes("item__btn-save")) {
+      this.hideEdit();
+      if (Pizza.different(this.pureItem, this.item)) {
+        let newComponent = ItemMainComponent.createItemMainComponent(this.item);
+        console.log("in main", this.item);
+        this.DOMElement.before(newComponent.DOMElement);
+      } else {
+        alert("Состав пиццы не изменился");
+      }
+    }
     if (eventClasses.includes("item-order")) DOMBucket.outerAddItem(this.item);
   }
   removeIngredient(event) {
@@ -146,7 +156,7 @@ class ItemMainComponent {
   }
   updateIngredientValue(event) {
     let ingredientID = event.target.className;
-    let quantity = event.target.value;
+    let quantity = +event.target.value;
     this.item.updateIngredientQuantity(ingredientID, quantity);
     this.updatePriceAndCalories()
   }
@@ -173,6 +183,22 @@ class ItemMainComponent {
     toggled.forEach(element => element.classList.toggle("ingredient__edit--hide"));
     let inputs = Array.from(this.DOMElement.querySelectorAll("input"));
     inputs.forEach(input => input.disabled = true);
+  }
+  static createItemMainComponent(itemAncestor) {
+    let item = {...itemAncestor};
+    if (item.name.includes("-")) item.name = item.name.slice(0, item.name.indexOf("-"));
+    let newID = Storage.getIDforNewMainComponent();
+    item.name = `${item.name}-${newID}`;
+    item.id = `${item.id}-${newID}`;
+    let newComponent = new ItemMainComponent(item);
+    newComponent.DOMElement.addEventListener("click", event => {
+      newComponent.reactToEvent(event);
+    });
+    newComponent.DOMElement.addEventListener("input", event => {
+      normalizeInput(event);
+      newComponent.reactToEvent(event);
+    });
+    return newComponent
   }
 }
 

@@ -396,9 +396,10 @@ ul {
   height: 400px;
   padding: 50px 10px 0 10px;
   background: white;
-  border: 1px solid gainsboro;
-  z-index: 900;
-  display: none;
+  border: 3px solid gainsboro;
+  z-index: -1;
+  opacity: 0;
+  transition: all .3s;
 }
 
 .bucket__list--cards {
@@ -407,7 +408,8 @@ ul {
 }
 
 .bucket:hover .bucket__list {
-  display: block;
+  opacity: 1;
+  z-index: 900;
 }
 
 .bucket__list--item {
@@ -442,7 +444,8 @@ ul {
 .bucket-item__img img {
   margin-left: 15px;
   border-radius: 10px;
-  height: var(--order-item-height);
+  /*height: var(--order-item-height);*/
+  width: 100px;
 }
 
 .bucket-item__quantity input {

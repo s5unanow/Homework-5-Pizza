@@ -28,6 +28,9 @@ class Ingredient {
     if (ingredientID === "olive") return new Ingredient("оливки", ingredientID, 30, 10);
     if (ingredientID === "cheese") return new Ingredient("сыр", ingredientID, 30, 15);
   }
+  static same(ingredient1, ingredient2) {
+    return ingredient1.id === ingredient2.id && ingredient1.quantity === ingredient2.quantity
+  }
 }
 
 const allIngredientsMap = new Map();

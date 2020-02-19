@@ -82,7 +82,6 @@ class Main extends PageComponent {
     return this
   }
   setTableStyle() {
-    console.log("tableStyle");
     this.element.innerHTML = ``;
     this.viewedItems.forEach(mainItem => {
       this.element.appendChild(mainItem.getTableViewElement());

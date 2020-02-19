@@ -61,6 +61,14 @@ class Pizza extends Item {
     });
     return pizza
   }
+  static different(pizza1, pizza2) {
+    let different = false;
+    if (pizza1.ingredients.length !== pizza2.ingredients.length) return true
+    pizza1.ingredients.forEach(ingredient1 => {
+      if (!pizza2.ingredients.some(ingredient2 => Ingredient.same(ingredient1, ingredient2))) different = true
+    });
+    return different
+  }
 }
 
 let items, itemsData;

@@ -75,6 +75,7 @@ class Bucket {
     return overAllQuantity;
   }
   outerAddItem(item) {
+    console.log(item.id);
     if (this.items.has(item.id)) {
       this.increaseItemQuantity(item);
       this.updateItemView(item.id);
@@ -90,7 +91,7 @@ class Bucket {
     DOMItem.innerHTML = `
        <div class="bucket-item__delete">❌</div>
        <div class="bucket-item__img">
-        <img src="resources/img/${item.name}.png" alt="Pizza img">
+        <img src="resources/img/${item.name}.png" onerror="this.src='resources/img/default-img.png'" alt="Pizza img">
       </div>
       <div class="bucket-item__col-3">
         <div class="bucket-item__name">${item.name}</div>
