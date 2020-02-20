@@ -390,8 +390,8 @@ ul {
 
 .bucket__list {
   position: absolute;
-  right: -3px;
-  top: -3px;
+  right: -5px;
+  top: -5px;
   width: 350px;
   height: 400px;
   padding: 50px 10px 0 10px;

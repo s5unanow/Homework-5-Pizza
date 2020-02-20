@@ -34,6 +34,9 @@ class ItemMainComponent {
       <span class="interactive-element delete-ingredient ingredient__edit--toggle ingredient__edit--hide">&nbsp;❌</span>`;
     return DOMIngredient
   }
+  resetDOMIngredients() {
+    this.DOMIgredients.innerHTML = this.createDOMIngredients().innerHTML;
+  }
   addIngredientToDOMIngredients(ingredientID) {
     let ingredientName = allIngredientsMap.get(ingredientID);
     let DOMIngredient = document.createElement("div");
@@ -130,8 +133,10 @@ class ItemMainComponent {
       this.hideEdit();
       if (Pizza.different(this.pureItem, this.item)) {
         let newComponent = ItemMainComponent.createItemMainComponent(this.item);
-        console.log("in main", this.item);
         this.DOMElement.before(newComponent.DOMElement);
+        this.item = Pizza.createPizzaFromStorage(this.pureItem);
+        this.resetDOMIngredients();
+        itemMainComponents.unshift(newComponent);
       } else {
         alert("Состав пиццы не изменился");
       }
@@ -203,6 +208,7 @@ class ItemMainComponent {
 }
 
 const itemMainComponents = items.map(item => new ItemMainComponent(item));
+itemMainComponents.sort();
 
 itemMainComponents.forEach(component => {
   component.DOMElement.addEventListener("click", event => {
