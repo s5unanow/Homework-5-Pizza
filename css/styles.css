@@ -478,3 +478,8 @@ ul {
   background: #ff5154;
 }
 
+.custom-item__name {
+  font-size: 1.4rem;
+  margin: 27px auto;
+  width: 200px;
+}

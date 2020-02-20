@@ -36,6 +36,7 @@ class ItemMainComponent {
   }
   resetDOMIngredients() {
     this.DOMIgredients.innerHTML = this.createDOMIngredients().innerHTML;
+    this.updatePriceAndCalories()
   }
   addIngredientToDOMIngredients(ingredientID) {
     let ingredientName = allIngredientsMap.get(ingredientID);
@@ -131,6 +132,7 @@ class ItemMainComponent {
     if (eventClasses.includes("item__btn-edit")) this.showEdit();
     if (eventClasses.includes("item__btn-save")) {
       this.hideEdit();
+      console.log(this.pureItem, this.item);
       if (Pizza.different(this.pureItem, this.item)) {
         let newComponent = ItemMainComponent.createItemMainComponent(this.item);
         this.DOMElement.before(newComponent.DOMElement);
@@ -152,6 +154,7 @@ class ItemMainComponent {
   }
   addIngredient(event) {
     let ingredientID = event.target.previousElementSibling.value;
+    console.log(this.item, this.pureItem);
     if (ingredientID) {
       this.item.addIngredient(ingredientID);
       this.removeOptionDOMSelect(ingredientID);

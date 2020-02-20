@@ -38,6 +38,7 @@ class Main extends PageComponent {
     this.mainItems = mainItems;
     this.viewedItems = mainItems;
     this.hasLayoutStyle = true;
+    // this.customCreator = new CustomCreator();
     this.sortBy(SORT_VIEW_TYPES.NAME_ASC);
   }
   build() {
@@ -86,6 +87,7 @@ class Main extends PageComponent {
     this.viewedItems.forEach(mainItem => {
       this.element.appendChild(mainItem.getTableViewElement());
     });
+    this.element.appendChild(ccreator.getTableViewElement());
     return this
   }
   setListStyle() {
